@@ -1,0 +1,37 @@
+{
+  "invocation": "bible today",
+  "version": "4.0",
+  "intents": {
+    "TodayIntent": {
+      "phrases": ["today", "today please", "start from today", "midway", "midway through"]
+    },
+    "BeginningIntent": {
+      "phrases": [
+        "the beginning",
+        "beginning",
+        "start at the beginning",
+        "start from the beginning"
+      ]
+    }
+  },
+  "alexa": {
+    "interactionModel": {
+      "languageModel": {
+        "intents": [
+          {
+            "name": "AMAZON.CancelIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.HelpIntent",
+            "samples": []
+          },
+          {
+            "name": "AMAZON.StopIntent",
+            "samples": []
+          }
+        ]
+      }
+    }
+  }
+}

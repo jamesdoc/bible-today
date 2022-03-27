@@ -1,0 +1,25 @@
+{
+  "translation": {
+    "Launch": {
+      "behind": "You're currently {{count}} day behind, come back later today to catch up on your next bible reading…",
+      "behind_plural": "You're currently {{count}} days behind, come back later today to catch up on your next bible reading…"
+    },
+    "StartChoice": {
+      "greeting": {
+        "firstTime": "Welcome. Would you like to start from the beginning of the reading plan, or pick up midway through with the reading for today?",
+        "returning": ["Welcome back!", "Good to see you again"]
+      },
+      "beginning": "Great, we shall start at the beginning…",
+      "midway": "Okay, picking up midway through."
+    },
+    "FindAudio": {
+      "today": "Today is day {{day}}"
+    },
+    "Ahead": "You're all caught up, come back tomorrow for the next set of passages in your reading plan.",
+
+    "Output": {
+      "beginning": "Beginning",
+      "today": "Today"
+    }
+  }
+}
