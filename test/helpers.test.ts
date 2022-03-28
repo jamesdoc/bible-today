@@ -1,4 +1,3 @@
-import { TestSuite } from '@jovotech/framework';
 import * as utils from '../src/helpers/utils';
 
 test('Day Incrementor should add one to the day', () => {

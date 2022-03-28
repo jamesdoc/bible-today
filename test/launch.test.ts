@@ -27,8 +27,6 @@ test('Starting at the beginning gives an introduction', async () => {
     },
   ]);
 
-  console.log(output);
-
   expect(output[0]).toEqual({
     message: 'Great, we shall start at the beginning…',
     listen: false,

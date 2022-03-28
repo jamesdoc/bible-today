@@ -1,6 +1,5 @@
-import { Component, BaseComponent, Intents } from '@jovotech/framework';
+import { Component, BaseComponent } from '@jovotech/framework';
 import { AudioPlayerComponent } from './AudioPlayerComponent';
-import { AheadComponent } from './AheadComponent';
 import plan from '../assets/plans/mcheyne.json';
 import { dayIncrementor } from '../helpers/utils';
 import { conf, IdbConfig } from '../config';
@@ -32,7 +31,7 @@ export class FindAudioComponent extends BaseComponent {
       listen: false,
     });
 
-    const passageAudioUrl = conf.esv_audio_url.replace('{{READINGS}}', readings);
+    const passageAudioUrl = dailyBibleConfig.esv_audio_url.replace('{{READINGS}}', readings);
     this.$session.data.passageAudioUrl = passageAudioUrl;
 
     // Increment the day count

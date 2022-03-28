@@ -1,4 +1,4 @@
-import { Component, BaseComponent, Intents } from '@jovotech/framework';
+import { Component, BaseComponent } from '@jovotech/framework';
 
 /*
 |--------------------------------------------------------------------------
