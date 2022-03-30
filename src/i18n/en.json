@@ -6,10 +6,10 @@
     },
     "StartChoice": {
       "greeting": {
-        "firstTime": "Welcome. Would you like to start from the beginning of the reading plan, or pick up midway through with the reading for today?",
+        "firstTime": "Welcome. Would you like to start from the beginning of the reading plan, or pick up midway through with the reading for today? Just say start at the beginning or start midway through",
         "returning": ["Welcome back!", "Good to see you again"]
       },
-      "beginning": "Great, we shall start at the beginning…",
+      "beginning": "Great, we'll start at the beginning…",
       "midway": "Okay, picking up midway through."
     },
     "FindAudio": {

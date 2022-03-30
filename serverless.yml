@@ -1,0 +1,22 @@
+service: bible-today
+frameworkVersion: 2
+package:
+  artifact: ./bundle.zip
+provider:
+  name: aws
+  region: eu-west-2
+  runtime: nodejs14.x
+  profile: bible-today-dev
+  timeout: 5
+  iam:
+    role:
+      statements:
+        - Effect: 'Allow'
+          Action:
+            - 'dynamodb:*'
+          Resource: '*'
+functions:
+  handler:
+    handler: index.handler
+    name: bibleToday-${sls:stage}
+    description: Daily Bible readings via Alexa

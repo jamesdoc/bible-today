@@ -3,6 +3,8 @@ db/
 bundle/
 bundle.zip
 .env
+.env.dev
+.env.staging
 dist/
 build/
 package-lock.json

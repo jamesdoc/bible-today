@@ -1,6 +1,9 @@
-const { GoogleAssistantCli } = require('@jovotech/platform-googleassistant');
+// const { GoogleAssistantCli } = require('@jovotech/platform-googleassistant');
 const { AlexaCli } = require('@jovotech/platform-alexa');
 const { ProjectConfig } = require('@jovotech/cli-core');
+const { ServerlessCli } = require('@jovotech/target-serverless');
+
+require('dotenv').config();
 
 /*
 |--------------------------------------------------------------------------
@@ -12,11 +15,57 @@ const { ProjectConfig } = require('@jovotech/cli-core');
 |
 */
 const project = new ProjectConfig({
-  endpoint: '${JOVO_WEBHOOK_URL}',
+  defaultStage: 'dev',
+
+  hooks: {
+    'before.build:platform': [() => console.log('Starting the build process now')],
+  },
+
+  stages: {
+    dev: {
+      plugins: [
+        new AlexaCli({
+          skillId: process.env.DEV_ALEXA_SKILL_ID,
+          endpoint: process.env.DEV_ALEXA_ENDPOINT,
+        }),
+      ],
+    },
+
+    staging: {
+      plugins: [
+        new AlexaCli({
+          skillId: process.env.STAGING_ALEXA_SKILL_ID,
+          endpoint: process.env.STAGING_ALEXA_ENDPOINT,
+        }),
+      ],
+    },
+  },
+
   plugins: [
-    // Add Jovo CLI plugins here
-		new GoogleAssistantCli({ projectId: '<YOUR-PROJECT-ID>' }),
-		new AlexaCli({ locales: { en: [ 'en-AU', 'en-CA', 'en-IN', 'en-GB', 'en-US' ] } }),
+    // new GoogleAssistantCli({ projectId: '<YOUR-PROJECT-ID>' }),
+    new AlexaCli({
+      locales: {
+        en: ['en-GB'],
+        // en: ['en-AU', 'en-CA', 'en-IN', 'en-GB', 'en-US'],
+      },
+      askProfile: 'default',
+      files: {
+        'skill-package/skill.json': {
+          manifest: {
+            apis: {
+              custom: {
+                interfaces: [
+                  {
+                    type: 'AUDIO_PLAYER',
+                  },
+                ],
+              },
+            },
+          },
+        },
+      },
+    }),
+    new ServerlessCli(),
   ],
 });
 
