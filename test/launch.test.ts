@@ -43,7 +43,7 @@ test('Starting at the beginning gives an introduction', async () => {
   });
 });
 
-test('Existing user picks up where they left off…', async () => {
+test('Existing user picks up where they left off', async () => {
   testSuite.$user.data = {
     day: 2,
   };
@@ -63,10 +63,11 @@ test('Existing user picks up where they left off…', async () => {
   });
 });
 
-test('User cannot get ahead of themselves…', async () => {
+test('User cannot get ahead of themselves', async () => {
   jest.useFakeTimers().setSystemTime(new Date('2022-01-05').getTime());
   testSuite.$user.data = {
     day: 6,
+    lastListenedDay: 5,
     startDate: '2022-01-01T00:00:00.000Z',
   };
 
@@ -84,15 +85,16 @@ test('User cannot get ahead of themselves…', async () => {
 test('User is alerted when behind', async () => {
   jest.useFakeTimers().setSystemTime(new Date('2022-01-10').getTime());
   testSuite.$user.data = {
-    day: 1,
+    day: 2,
+    lastListenedDay: 1,
     startDate: '2022-01-05T00:00:00.000Z',
   };
 
-  const { output } = await testSuite.run({
+  const { output: fourDays } = await testSuite.run({
     type: InputType.Launch,
   });
 
-  expect(output[1]).toEqual({
+  expect(fourDays[1]).toEqual({
     message:
       "You're currently 4 days behind, come back later today to catch up on your next bible reading…",
     listen: false,

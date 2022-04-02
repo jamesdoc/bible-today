@@ -10,6 +10,7 @@ const dailyBibleConfig: IdbConfig = conf;
 export class FindAudioComponent extends BaseComponent {
   START() {
     const day = this.$user.data.day;
+    this.$user.data.lastListenedDay = day;
 
     if (day === 1) {
       this.$send({
@@ -18,7 +19,7 @@ export class FindAudioComponent extends BaseComponent {
       });
 
       this.$send({
-        message: `There are ${plan.meta.days} days in this plan. Each day is approximately ${plan.meta.dailyLength} long.`,
+        message: `There are ${plan.items.length} days in this plan. Each day is approximately ${plan.meta.dailyLength} long.`,
         listen: false,
       });
     }

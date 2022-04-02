@@ -16,13 +16,12 @@ import dayjs from 'dayjs';
 @Component()
 export class GlobalComponent extends BaseComponent {
   LAUNCH() {
-    const day = this.$user.data.day;
-    const startDate = this.$user.data.startDate;
+    const { lastListenedDay, day, startDate } = this.$user.data;
 
     // Check if we are ahead of ourselves…
-    if (day && startDate) {
+    if (lastListenedDay && startDate) {
       const today = dayjs();
-      const dayCheck = dayjs(startDate).add(day, 'days');
+      const dayCheck = dayjs(startDate).add(lastListenedDay, 'days');
 
       if (dayCheck.isAfter(today)) {
         return this.$redirect('AheadComponent');
