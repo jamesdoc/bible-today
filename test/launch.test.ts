@@ -100,3 +100,45 @@ test('User is alerted when behind', async () => {
     listen: false,
   });
 });
+
+test('end of the year should reset', async () => {
+  jest.useFakeTimers().setSystemTime(new Date('2021-12-31').getTime());
+  testSuite.$user.data = {
+    day: 365,
+    lastListenedDay: 364,
+    startDate: '2021-01-01T00:00:00.000Z',
+  };
+
+  const { output } = await testSuite.run({
+    type: InputType.Launch,
+  });
+
+  expect(testSuite.$user.data.day).toEqual(1);
+});
+
+test('day one should reset the start date', async () => {
+  jest.useFakeTimers().setSystemTime(new Date('2021-12-31').getTime());
+  testSuite.$user.data = {
+    day: 365,
+    lastListenedDay: 364,
+    startDate: '2021-01-01T00:00:00.000Z',
+  };
+
+  const { output: lastYear } = await testSuite.run({
+    type: InputType.Launch,
+  });
+
+  expect(testSuite.$user.data.day).toEqual(1);
+
+  jest.useFakeTimers().setSystemTime(new Date('2022-01-01').getTime());
+
+  const { output: thisYear } = await testSuite.run({
+    type: InputType.Launch,
+  });
+
+  expect(testSuite.$user.data).toEqual({
+    day: 2,
+    lastListenedDay: 1,
+    startDate: new Date('2022-01-01'),
+  });
+});

@@ -1,3 +1,5 @@
+/* istanbul ignore next */
+
 import { ExpressJs, Request, Response, Webhook } from '@jovotech/server-express';
 import { app } from './app';
 

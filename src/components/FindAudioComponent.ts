@@ -35,17 +35,14 @@ export class FindAudioComponent extends BaseComponent {
     const passageAudioUrl = dailyBibleConfig.esv_audio_url.replace('{{READINGS}}', readings);
     this.$session.data.passageAudioUrl = passageAudioUrl;
 
-    // Increment the day count
-    const newDay = dayIncrementor(day);
-    this.$user.data.day = newDay;
-    if (newDay === 1) {
+    if (day === 1) {
       this.$user.data.startDate = new Date();
     }
 
-    return this.$redirect(AudioPlayerComponent);
-  }
+    // Increment the day count
+    const newDay = dayIncrementor(day);
+    this.$user.data.day = newDay;
 
-  UNHANDLED() {
-    return this.START();
+    return this.$redirect(AudioPlayerComponent);
   }
 }

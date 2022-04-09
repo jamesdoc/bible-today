@@ -4,15 +4,6 @@ import { FindAudioComponent } from './FindAudioComponent';
 import { BeginningTodayOutput } from '../output/BeginningTodayOutput';
 import { dayOfYear } from '../helpers/utils';
 
-/*
-|--------------------------------------------------------------------------
-| Component
-|--------------------------------------------------------------------------
-|
-| A component consists of handlers that respond to specific user requests
-| Learn more here: www.jovo.tech/docs/components, jovo.tech/docs/handlers
-|
-*/
 @Component()
 export class StartChoiceComponent extends BaseComponent {
   START() {
