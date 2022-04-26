@@ -1,4 +1,4 @@
-import { Component, BaseComponent, Global } from '@jovotech/framework';
+import { Component, BaseComponent, Global, Intents, Handle } from '@jovotech/framework';
 import { StartChoiceComponent } from './StartChoiceComponent';
 import { FindAudioComponent } from './FindAudioComponent';
 import dayjs from 'dayjs';
@@ -51,5 +51,21 @@ export class GlobalComponent extends BaseComponent {
 
     // Set up the Bible reading plan…
     return this.$redirect(StartChoiceComponent);
+  }
+
+  @Handle({
+    intents: [{ name: 'StartOverIntent', global: true }],
+    prioritizedOverUnhandled: true,
+  })
+  startOver() {
+    // ToDo: Confirm this decision
+
+    // ToDo: Wipe all setting for this user
+
+    // ToDo: Redirect to StartChoice
+    return this.$send({
+      message: 'We are starting again',
+      listen: false,
+    });
   }
 }
